@@ -12,5 +12,14 @@ data class GetBlockResponse(
         var timestamp: String,
 
         @Json(name = "previous")
-        val previous: String
+        val previous: String,
+
+        @Json(name = "producer")
+        val producer: String,
+
+        @Json(name = "transactions")
+        val transactions: List<Transaction>,
+
+        @Json(name = "producer_signature")
+        val producerSignature: String
 )

@@ -9,7 +9,7 @@ class KanetikApplication : Application() {
         val fakeRepository: MutableList<GetBlockResponse> = ArrayList()
 
         fun getBlock(id: String) : GetBlockResponse {
-            return fakeRepository.find { it.id == id } ?: GetBlockResponse("","", "")
+            return fakeRepository.find { it.id == id } ?: GetBlockResponse("","", "", "", listOf(), "")
         }
     }
 }

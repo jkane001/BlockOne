@@ -12,9 +12,6 @@ class BlockDetailViewModel(application: Application) : AndroidViewModel(applicat
         return blockDetail
     }
 
-    init {
-    }
-
     fun getBlockDetail(id: String) {
         KanetikApplication.fakeRepository
                 .find { blockResponse -> blockResponse.id == id }
