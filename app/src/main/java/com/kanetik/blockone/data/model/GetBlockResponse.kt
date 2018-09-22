@@ -5,9 +5,12 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class GetBlockResponse(
-        @Json(name = "previous")
-        val previous: String,
+        @Json(name = "id")
+        val id: String,
 
         @Json(name = "timestamp")
-        var timestamp: String
+        var timestamp: String,
+
+        @Json(name = "previous")
+        val previous: String
 )

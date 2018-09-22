@@ -1,12 +1,15 @@
 package com.kanetik.blockone
 
 import android.app.Application
+import com.kanetik.blockone.data.model.GetBlockResponse
 
 class KanetikApplication : Application() {
-//    companion object {
-//    }
+    companion object {
+        // Normally this would be a Room collection (sqlite), but for purposes of the exercise, I'm just gonna store this in memory
+        val fakeRepository: MutableList<GetBlockResponse> = ArrayList()
 
-    override fun onCreate() {
-        super.onCreate()
+        fun getBlock(id: String) : GetBlockResponse {
+            return fakeRepository.find { it.id == id } ?: GetBlockResponse("","", "")
+        }
     }
 }

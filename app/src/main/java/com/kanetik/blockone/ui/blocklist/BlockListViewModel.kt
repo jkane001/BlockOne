@@ -1,10 +1,9 @@
 package com.kanetik.blockone.ui.blocklist
 
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.kanetik.blockone.KanetikApplication
 import com.kanetik.blockone.data.api.ChainClient
 import com.kanetik.blockone.data.model.GetBlockRequest
 import com.kanetik.blockone.data.model.GetBlockResponse
@@ -13,18 +12,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class BlockListViewModel : ViewModel() {
-    // Temporary
-    private val MAX = 5
-    private var index = 0
+class BlockListViewModel(application: Application, maxBlocks: Int) : AndroidViewModel(application) {
+    private var index = 1
 
     private val infoResponse: MutableLiveData<GetInfoResponse> = MutableLiveData()
     private val blockResponse: MutableLiveData<GetBlockResponse> = MutableLiveData()
 
-    // Normally this would be a Room collection (sqlite), but for purposes of the exercise, I'm just gonna store this in memory
-    private val fakeRepository: MutableList<GetBlockResponse> = ArrayList()
-
-    // Also, we'd typically want to map to a domain model instead of using the response model, but again, time.
+    // We'd typically want to map to a domain model instead of using the response model, but again, time.
     private val blocks: MediatorLiveData<List<GetBlockResponse>> = MediatorLiveData()
 
     fun getInfoResponse(): LiveData<GetInfoResponse> {
@@ -37,14 +31,14 @@ class BlockListViewModel : ViewModel() {
 
     init {
         blocks.addSource(blockResponse) { blockResponse ->
-            fakeRepository += blockResponse
+            KanetikApplication.fakeRepository += blockResponse
 
             index += 1
-            if (index < MAX) {
+            if (index < maxBlocks) {
                 requestBlocks(blockResponse.previous)
             } else {
                 // Debounce is the better way, but this works for this exercise
-                blocks.postValue(fakeRepository)
+                blocks.postValue(KanetikApplication.fakeRepository)
             }
         }
 
@@ -73,5 +67,12 @@ class BlockListViewModel : ViewModel() {
                 }
             }
         })
+    }
+
+    class Factory(private val application: Application, private val maxBlocks: Int) : ViewModelProvider.NewInstanceFactory() {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            @Suppress("UNCHECKED_CAST")
+            return BlockListViewModel(application, maxBlocks) as T
+        }
     }
 }

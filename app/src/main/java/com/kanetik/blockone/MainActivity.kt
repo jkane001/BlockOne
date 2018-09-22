@@ -13,6 +13,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun goToSummary() {
-        startActivity(BlockListIntent(1))
+        startActivity(blockListIntent(20))
     }
 }

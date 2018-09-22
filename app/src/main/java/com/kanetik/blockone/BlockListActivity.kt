@@ -6,13 +6,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kanetik.blockone.ui.blocklist.BlockListFragment
 
-fun Context.BlockListIntent(count: kotlin.Int): Intent {
+private const val DEFAULT_MAX_BLOCK_COUNT = 1
+private const val INTENT_BLOCK_COUNT = "maxBlocks"
+
+fun Context.blockListIntent(maxBlocks: kotlin.Int): Intent {
     return Intent(this, BlockListActivity::class.java).apply {
-        putExtra(INTENT_BLOCK_COUNT, count)
+        putExtra(INTENT_BLOCK_COUNT, maxBlocks)
     }
 }
-
-private const val INTENT_BLOCK_COUNT = "count"
 
 class BlockListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,8 +21,10 @@ class BlockListActivity : AppCompatActivity() {
         setContentView(R.layout.block_list_activity)
 
         if (savedInstanceState == null) {
+            val maxBlocks = intent?.getIntExtra(INTENT_BLOCK_COUNT, DEFAULT_MAX_BLOCK_COUNT)
+
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, BlockListFragment.newInstance())
+                    .replace(R.id.container, BlockListFragment.newInstance(maxBlocks ?: DEFAULT_MAX_BLOCK_COUNT))
                     .commitNow()
         }
     }
