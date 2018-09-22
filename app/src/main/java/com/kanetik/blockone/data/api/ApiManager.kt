@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 object ApiManager {
-    private const val ENDPOINT_BASE = "https://api.eosnewyork.io/v1"
+    private const val ENDPOINT_BASE = "https://api.eosnewyork.io/v1/"
 
     fun <T> getService(service: Class<T>): T {
         val retrofitBuilder = Retrofit.Builder()
