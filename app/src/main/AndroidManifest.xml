@@ -26,6 +26,9 @@
         <activity
             android:name=".BlockListActivity"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".BlockDetailActivity"
+            android:parentActivityName=".BlockListActivity" />
     </application>
 
 </manifest>

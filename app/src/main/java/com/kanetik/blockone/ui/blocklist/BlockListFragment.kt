@@ -9,8 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.kanetik.blockone.KanetikApplication
-import com.kanetik.blockone.R
+import com.kanetik.blockone.*
 import com.kanetik.blockone.data.model.GetBlockResponse
 import kotlinx.android.synthetic.main.block_list_fragment.*
 import java.util.*
@@ -61,6 +60,6 @@ class BlockListFragment : Fragment() {
     }
 
     private fun blockClicked(block : GetBlockResponse) {
-        Log.i("Clicked", block.id)
+        startActivity(activity!!.blockDetailIntent(block.id))
     }
 }
