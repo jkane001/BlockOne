@@ -2,8 +2,8 @@ package com.kanetik.blockone
 
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.kanetik.blockone.ui.blocklist.BlockListFragment
 
 fun Context.BlockListIntent(count: kotlin.Int): Intent {

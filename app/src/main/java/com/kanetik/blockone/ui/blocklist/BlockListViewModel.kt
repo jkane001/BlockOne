@@ -1,6 +1,6 @@
 package com.kanetik.blockone.ui.blocklist
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 
 class BlockListViewModel : ViewModel() {
     // TODO: Implement the ViewModel
