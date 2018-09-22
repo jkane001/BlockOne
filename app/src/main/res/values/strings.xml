@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Block.One</string>
+    <string name="view_recent_blocks">View Recent Blocks</string>
+    <string name="eos_logo">EOS Logo</string>
+</resources>
