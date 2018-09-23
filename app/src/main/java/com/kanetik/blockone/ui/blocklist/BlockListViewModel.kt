@@ -15,15 +15,10 @@ import retrofit2.Response
 class BlockListViewModel(application: Application, maxBlocks: Int) : AndroidViewModel(application) {
     private var index = 1
 
-    private val infoResponse: MutableLiveData<GetInfoResponse> = MutableLiveData()
     private val blockResponse: MutableLiveData<GetBlockResponse> = MutableLiveData()
 
     // We'd typically want to map to a domain model instead of using the response model, but again, time.
     private val blocks: MediatorLiveData<List<GetBlockResponse>> = MediatorLiveData()
-
-    fun getInfoResponse(): LiveData<GetInfoResponse> {
-        return infoResponse
-    }
 
     fun getBlocks(): LiveData<List<GetBlockResponse>> {
         return blocks
@@ -48,8 +43,8 @@ class BlockListViewModel(application: Application, maxBlocks: Int) : AndroidView
             }
 
             override fun onResponse(call: Call<GetInfoResponse>?, response: Response<GetInfoResponse>?) {
-                if (response?.isSuccessful == true && response.body() != null) {
-                    infoResponse.postValue(response.body())
+                if (response?.isSuccessful == true) {
+                    requestBlocks(response.body()?.lastIrreversibleBlockId ?: "")
                 }
             }
         })

@@ -40,10 +40,6 @@ class BlockListFragment : Fragment() {
         val factory = BlockListViewModel.Factory(KanetikApplication(), arguments?.getInt(INTENT_BLOCK_COUNT) ?: DEFAULT_MAX_BLOCK_COUNT)
         viewModel = ViewModelProviders.of(this, factory).get(BlockListViewModel::class.java)
 
-        viewModel.getInfoResponse().observe(this, Observer {
-            viewModel.requestBlocks(it.lastIrreversibleBlockId)
-        })
-
         viewModel.getBlocks().observe(this, Observer { response ->
             blockList.adapter = BlockAdapter(context!!, response) { block : GetBlockResponse -> blockClicked(block) }
         })
@@ -56,7 +52,6 @@ class BlockListFragment : Fragment() {
                 ?: DEFAULT_MAX_BLOCK_COUNT)
 
         blockList.layoutManager = LinearLayoutManager(context)
-        blockList.adapter = BlockAdapter(context!!, ArrayList()) { block : GetBlockResponse -> blockClicked(block) }
     }
 
     private fun blockClicked(block : GetBlockResponse) {
