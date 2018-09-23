@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kanetik.blockone.ui.blocklist.BlockListFragment
 
-private const val DEFAULT_MAX_BLOCK_COUNT = 1
+private const val DEFAULT_MAX_BLOCK_COUNT = 20
 private const val INTENT_BLOCK_COUNT = "maxBlocks"
 
 fun Context.blockListIntent(maxBlocks: kotlin.Int): Intent {

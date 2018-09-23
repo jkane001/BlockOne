@@ -14,7 +14,7 @@ import com.kanetik.blockone.data.model.GetBlockResponse
 import kotlinx.android.synthetic.main.block_list_fragment.*
 import java.util.*
 
-private const val DEFAULT_MAX_BLOCK_COUNT = 1
+private const val DEFAULT_MAX_BLOCK_COUNT = 20
 private const val INTENT_BLOCK_COUNT = "maxBlocks"
 
 class BlockListFragment : Fragment() {
@@ -40,12 +40,12 @@ class BlockListFragment : Fragment() {
         val factory = BlockListViewModel.Factory(KanetikApplication(), arguments?.getInt(INTENT_BLOCK_COUNT) ?: DEFAULT_MAX_BLOCK_COUNT)
         viewModel = ViewModelProviders.of(this, factory).get(BlockListViewModel::class.java)
 
-        viewModel.getBlocks().observe(this, Observer { response ->
-            blockList.adapter = BlockAdapter(context!!, response) { block : GetBlockResponse -> blockClicked(block) }
-        })
-
         viewModel.getInfoResponse().observe(this, Observer {
             viewModel.requestBlocks(it.lastIrreversibleBlockId)
+        })
+
+        viewModel.getBlocks().observe(this, Observer { response ->
+            blockList.adapter = BlockAdapter(context!!, response) { block : GetBlockResponse -> blockClicked(block) }
         })
 
         initLayout()
