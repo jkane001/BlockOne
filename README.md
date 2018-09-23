@@ -8,9 +8,9 @@
  - Implement Paging library to limit network calls
  - Prettify the raw transactions JSON
 
-## Notes
-Wait time for the list of recent blocks is bad at the moment - several of the remaining items would help that - notably updating the list adapter after each block is retrieved. The reason that isn't being done now is that the data isn't guaranteed to be in order with the current list type, and so to accomodate, I'm just waiting for the whole list to come back.
+## Performance
+Wait time for the list of recent blocks is bad at the moment - several of the remaining items would help that - notably updating the list adapter after each block is retrieved. The reason that isn't being done now is that the data isn't guaranteed to be in order with the current list type, and so to accommodate that, I'm just waiting for the whole list to come back. 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NjExMjMxMTcsOTgzODU5MDc2LDI1Mz
-YxNjkzXX0=
+eyJoaXN0b3J5IjpbLTQ5MzAwMjQxMCw5ODM4NTkwNzYsMjUzNj
+E2OTNdfQ==
 -->
