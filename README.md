@@ -3,8 +3,10 @@
 ## Remaining Items
 
  - Write tests for the ViewModels
- - Performance Fixes 
+ - "Busy" spinner while retrieving recent blocks
+ - Change list backing store to a SortedList
+ - 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjIzMjQ3MjgzXX0=
+eyJoaXN0b3J5IjpbLTQ5MDIyMDAwNF19
 -->
