@@ -17,12 +17,10 @@ Another improvement would be had with the use of paging - only make calls for th
 ## Screenshots
 ![Home Screen](https://raw.githubusercontent.com/jkane001/BlockOne/master/assets/screen_1.png)
 ![enter image description here](https://raw.githubusercontent.com/jkane001/BlockOne/master/assets/screen_2.png)
-
 ![enter image description here](https://raw.githubusercontent.com/jkane001/BlockOne/master/assets/screen_3.png)
-
 ![enter image description here](https://raw.githubusercontent.com/jkane001/BlockOne/master/assets/screen_4.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQwNDk1OTQ3NCwtMTk2NjE4MTQzOCwtND
+eyJoaXN0b3J5IjpbMTg3MDQ4MTg3MCwtMTk2NjE4MTQzOCwtND
 kyMDAwNjk5LDE4MDk1NDM4NDQsOTgzODU5MDc2LDI1MzYxNjkz
 XX0=
 -->
