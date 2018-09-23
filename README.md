@@ -15,9 +15,14 @@ Wait time for the list of recent blocks is bad at the moment - several of the re
 Another improvement would be had with the use of paging - only make calls for those items that are visible on the page, and maybe a couple more, then as you begin scrolling, keep pulling until you've hit the upper limit requested.
 
 ## Screenshots
-![Home Screen](https://github.com/jkane001/BlockOne/blob/master/assets/screen_1.png)
+![Home Screen](https://raw.githubusercontent.com/jkane001/BlockOne/master/assets/screen_1.png)
+![enter image description here](https://raw.githubusercontent.com/jkane001/BlockOne/master/assets/screen_2.png)
+
+![enter image description here](https://raw.githubusercontent.com/jkane001/BlockOne/master/assets/screen_3.png)
+
+![enter image description here](https://raw.githubusercontent.com/jkane001/BlockOne/master/assets/screen_4.png)
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE4NDAyOTYyMDIsLTE5NjYxODE0MzgsLT
-Q5MjAwMDY5OSwxODA5NTQzODQ0LDk4Mzg1OTA3NiwyNTM2MTY5
-M119
+eyJoaXN0b3J5IjpbLTQwNDk1OTQ3NCwtMTk2NjE4MTQzOCwtND
+kyMDAwNjk5LDE4MDk1NDM4NDQsOTgzODU5MDc2LDI1MzYxNjkz
+XX0=
 -->
