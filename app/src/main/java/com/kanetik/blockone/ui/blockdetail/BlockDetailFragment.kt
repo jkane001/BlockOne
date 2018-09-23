@@ -49,7 +49,8 @@ class BlockDetailFragment : Fragment() {
         producerSignature.text = block.producerSignature
         transactionCount.text = block.transactions.count().toString()
 
-        transactionCount.setOnClickListener { rawTransactions.text = block.transactions.toString() }
+        showTransactions.setOnCheckedChangeListener { button, isChecked -> if (isChecked) rawTransactions.text = block.transactions.toString() else rawTransactions.text = "" }
+        //{ rawTransactions.text = block.transactions.toString() }
     }
 
 }

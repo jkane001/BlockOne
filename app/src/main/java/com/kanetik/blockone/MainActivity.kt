@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun goToSummary() {
+        KanetikApplication.fakeRepository.clear()
         startActivity(blockListIntent(20))
     }
 }
