@@ -8,8 +8,8 @@
  - Implement Paging library to limit network calls
  - Prettify the raw transactions JSON
 
-## Assumptions
+## Notes
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjUzNjE2OTNdfQ==
+eyJoaXN0b3J5IjpbOTgzODU5MDc2LDI1MzYxNjkzXX0=
 -->
