@@ -17,7 +17,7 @@ class BlockListViewModel(application: Application, maxBlocks: Int) : AndroidView
 
     private val blockResponse: MutableLiveData<GetBlockResponse> = MutableLiveData()
 
-    // We'd typically want to map to a domain model instead of using the response model, but again, time.
+    // We'd typically want to map to a domain model instead of using the response model
     private val blocks: MediatorLiveData<List<GetBlockResponse>> = MediatorLiveData()
 
     fun getBlocks(): LiveData<List<GetBlockResponse>> {
@@ -26,28 +26,35 @@ class BlockListViewModel(application: Application, maxBlocks: Int) : AndroidView
 
     init {
         blocks.addSource(blockResponse) { blockResponse ->
+            // Local cache for later
             KanetikApplication.fakeRepository += blockResponse
 
+            val newList = blocks.value?.plus(blockResponse) ?: listOf(blockResponse)
+            blocks.postValue(newList)
+
             index += 1
-            if (index < maxBlocks) {
+            if (index <= maxBlocks) {
                 requestBlocks(blockResponse.previous)
-            } else {
-                // Debounce is the better way, but this works for this exercise
-                blocks.postValue(KanetikApplication.fakeRepository)
             }
         }
 
-        ChainClient.getInfo(object : Callback<GetInfoResponse> {
-            override fun onFailure(call: Call<GetInfoResponse>?, t: Throwable?) {
-
-            }
-
-            override fun onResponse(call: Call<GetInfoResponse>?, response: Response<GetInfoResponse>?) {
-                if (response?.isSuccessful == true) {
-                    requestBlocks(response.body()?.lastIrreversibleBlockId ?: "")
+        if (KanetikApplication.fakeRepository.size < maxBlocks) {
+            ChainClient.getInfo(object : Callback<GetInfoResponse> {
+                override fun onFailure(call: Call<GetInfoResponse>?, t: Throwable?) {
+                    // Handle failure better
                 }
-            }
-        })
+
+                override fun onResponse(call: Call<GetInfoResponse>?, response: Response<GetInfoResponse>?) {
+                    if (response?.isSuccessful == true) {
+                        requestBlocks(response.body()?.lastIrreversibleBlockId ?: "")
+                    }
+                }
+            })
+        } else {
+            // Don't retrieve again - use the cache
+            index = 20
+            blocks.postValue(KanetikApplication.fakeRepository)
+        }
     }
 
     fun requestBlocks(id: String) {
